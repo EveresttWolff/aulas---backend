@@ -11,6 +11,7 @@ function cadastrarAluno(): void{
 
     let novoAluno = new Aluno(nome, idade, nacionalidade, null, classeMagica)
     novoAluno.sortearCasa()
+    ask.question(novoAluno.exibirInformacoes())
     alunos.push(novoAluno)
     console.log("Aluno cadastrado com sucesso!")
 }
@@ -21,10 +22,11 @@ function listarAlunos(): void {
         return
     }
     console.log("Lista de Alunos:")
-    alunos.forEach((aluno, index) => {
-        console.log(`\n--- Aluno ${index + 1} ---`)
-        aluno.exibirInformacoes()
-    })
+    for(let i in alunos){
+        console.log(`\n--- Aluno ${Number(i) + 1} ---`)
+        console.log(`Nome: ${alunos[i].getNome()}\nIdade: ${alunos[i].getIdade()}\nNacionalidade: ${alunos[i].getNacionalidade}\nCasa: ${alunos[i].getCasa}\nClasse Mágica: ${alunos[i].getClasseMagica}`)
+    }
+    ask.question("continuar...")
 }
 
 function editarAluno(): void{

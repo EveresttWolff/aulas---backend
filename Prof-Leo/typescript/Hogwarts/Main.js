@@ -8,8 +8,9 @@ function cadastrarAluno() {
     var idade = Number(ask.question("Digite a idade do aluno:"));
     var nacionalidade = ask.question("Digite a nacionalidade do aluno:");
     var classeMagica = ask.question("Digite a classe mágica do aluno:");
-    var novoAluno = new Aluno_1.Aluno("", 0, "", "", "");
+    var novoAluno = new Aluno_1.Aluno(nome, idade, nacionalidade, null, classeMagica);
     novoAluno.sortearCasa();
+    ask.question(novoAluno.exibirInformacoes());
     alunos.push(novoAluno);
     console.log("Aluno cadastrado com sucesso!");
 }
@@ -19,10 +20,11 @@ function listarAlunos() {
         return;
     }
     console.log("Lista de Alunos:");
-    alunos.forEach(function (aluno, index) {
-        console.log("\n--- Aluno ".concat(index + 1, " ---"));
-        aluno.exibirInformacoes();
-    });
+    for (var i in alunos) {
+        console.log("\n--- Aluno ".concat(Number(i) + 1, " ---"));
+        console.log("Nome: ".concat(alunos[i].getNome(), "\nIdade: ").concat(alunos[i].getIdade(), "\nNacionalidade: ").concat(alunos[i].getNacionalidade, "\nCasa: ").concat(alunos[i].getCasa, "\nClasse M\u00E1gica: ").concat(alunos[i].getClasseMagica));
+    }
+    ask.question("continuar...");
 }
 function editarAluno() {
     listarAlunos();
