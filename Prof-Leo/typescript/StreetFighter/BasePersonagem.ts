@@ -1,11 +1,11 @@
 import { Personagem } from "./Personagem";
 
-export class BasePersonagem implements Personagem{
+export abstract class BasePersonagem implements Personagem{
     nome: string
     vida: number
     nacionalidade: string
     estiloLuta: string
-    private golpeEspecialUsado: boolean = false
+    golpeEspecialUsado: boolean = false
 
     constructor(nome:string, vida: number, nacionalidade: string, estiloLuta: string){
         this.nome = nome
@@ -46,22 +46,11 @@ export class BasePersonagem implements Personagem{
         this.estiloLuta = estiloLuta
     }
 
-    golpeLeve(): number {
-        throw new Error("Método não implementado!")
-    }
+    abstract golpeLeve(): number
 
-    golpePesado(): number {
-        throw new Error("Método não implementado!")
-    }
+    abstract golpePesado(): number
 
-    golpeEspecial(): number {
-        if (this.golpeEspecialUsado){
-            console.log(`${this.nome} já usou seu golpe especial!`)
-            return 0
-        }
-        this.golpeEspecialUsado = true
-        return this.danoAleatorio(30,50)
-    }
+    abstract golpeEspecial(): number
 
     protected danoAleatorio(min: number, max:number): number{
         return Math.floor(Math.random() * (max - min + 1)) + min
